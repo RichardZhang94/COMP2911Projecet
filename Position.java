@@ -1,9 +1,11 @@
+import java.util.LinkedList;
 
 public class Position {
 	private int xPosition;
 	private int yPosition;
 	private int value;
 	private boolean canBeChanged;
+	private LinkedList<Integer> listOfPossibleVal;
 	
 	public Position (int x, int y, int val, boolean beenSet) 
 	{
@@ -11,6 +13,14 @@ public class Position {
 		yPosition = y;
 		value = val;
 		canBeChanged = beenSet;
+		listOfPossibleVal = new LinkedList<Integer>();
+		
+		int count = 1;
+		
+		while (count != 10) {
+			listOfPossibleVal.add(count);
+			count++;
+		}
 	}
 	
 	public int getXPosition() 
@@ -31,5 +41,17 @@ public class Position {
 	public boolean canChange() 
 	{
 		return canBeChanged;
+	}
+	
+	public void removeVal (int valToRemove) {
+		listOfPossibleVal.removeLastOccurrence(valToRemove);
+	}
+	
+	public boolean checkContains (int checkVal) {
+		boolean answer = true;
+		
+		answer = listOfPossibleVal.contains(checkVal);
+		
+		return answer;
 	}
 }

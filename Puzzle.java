@@ -268,6 +268,15 @@ public class Puzzle {
 
 		//System.out.println("completed");
 	}
+	
+	public boolean checkPuzzle() {
+		Solver check = new Solver();
+		boolean answer = false;
+		
+		answer = check.solved(this);
+		
+		return answer;
+	}
 
 	private boolean isLegal(int x) {
 		boolean answer = true;
