@@ -44,7 +44,7 @@ public class Position {
 	}
 	
 	public void removeVal (int valToRemove) {
-		listOfPossibleVal.removeLastOccurrence(valToRemove);
+		listOfPossibleVal.removeFirstOccurrence(valToRemove);
 	}
 	
 	public boolean checkContains (int checkVal) {
