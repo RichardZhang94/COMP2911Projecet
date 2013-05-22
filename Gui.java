@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ public class Gui{
 	public Gui (Puzzle puzzle)
 	{
 		sudokuGrid = puzzle;
-		JPanel sudokuGrid = new JPanel();	//setting up the sudoku grid
+		JPanel sudokuGrid = new JPanel();	//making the sudoku grid
 		sudokuGrid.setLayout(new GridLayout(9,9));
 		sudokuGrid.setPreferredSize(new Dimension(500,500));
 		Integer i = 1;
@@ -67,10 +68,24 @@ public class Gui{
 		inputPanel.setLayout(new BorderLayout());
 		inputPanel.add(inputLabel, BorderLayout.NORTH);
 		inputPanel.add(inputGrid, BorderLayout.CENTER);
+		
+		JPanel miscButtons	= new JPanel();			//making miscellaneous buttons
+		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle);
+		miscButtons.setLayout(new GridBagLayout());
+		button = new JButton("Save");
+		button.setPreferredSize(new Dimension(120, 70));
+		button.addActionListener(miscButtonHandler);
+		miscButtons.add(button);
+		button = new JButton("Check");
+		button.setPreferredSize(new Dimension(120, 70));
+		button.addActionListener(miscButtonHandler);
+		miscButtons.add(button);
+				
 		JFrame frame = new JFrame();				//creating actual window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//exit when the 'x' button is clicked
 		frame.add(sudokuGrid, BorderLayout.NORTH);				//adding panels to the window
 		frame.add(inputPanel, BorderLayout.EAST);
+		frame.add(miscButtons, BorderLayout.WEST);
 		frame.setSize(700,700);						//packing the window to fit the frame size
 		frame.setVisible(true);						//show window
 	}

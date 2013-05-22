@@ -8,7 +8,7 @@ public class GuiManager {
 	 */
 	public static void main(String[] args) {
 		//sets up GUI display
-		Puzzle sudokuGrid = new Puzzle("Bob");
+		Puzzle sudokuGrid = new Puzzle();
 		Gui gui = new Gui(sudokuGrid);		
 	}
 
