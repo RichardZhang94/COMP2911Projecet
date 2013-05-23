@@ -27,7 +27,8 @@ public class Gui{
 		GridButtonHandler gridButtonHandler = new GridButtonHandler(puzzle, this);
 		while (i <= 81)
 		{
-			button = new JButton("0");
+			Integer value = puzzle.getValueAtPosition(x, y);
+			button = new JButton(value.toString());
 			String label = "";
 			label = label.concat(x.toString());
 			label = label.concat(y.toString());
