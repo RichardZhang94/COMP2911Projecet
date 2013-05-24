@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PuzzleDatabase {
 
 	private ArrayList<Puzzle> samplePuzzles = new ArrayList<Puzzle>();
-	private ArrayList<Puzzle> solutionPuzzles = new ArrayList<Puzzle>();
 	
 	public PuzzleDatabase() {
 		addSamplePuzzles();
@@ -13,35 +13,46 @@ public class PuzzleDatabase {
 	{
 		Puzzle sample1 = new Puzzle();
 		
-		sample1.loadPuzzle("samplePuzzle1");
-		sample1.makePositionsSet();
-
-		samplePuzzles.add(sample1);
+		int count = 1;
 		
-		Puzzle sampleSolution1 = new Puzzle();
-		
-		sampleSolution1.loadPuzzle("solution1");
-		
-		solutionPuzzles.add(sampleSolution1);
-	}
-	
-	public Puzzle getPuzzle(int x) 
-	{
-		return samplePuzzles.get(x);
-	}
-	
-	public Puzzle getSolution(String s) 
-	{
-		int count = 0;
-		Puzzle solution = null;
-		
-		while (count != samplePuzzles.size()) {
-			Puzzle temp = solutionPuzzles.get(count);
-			if (temp.getID().equals(s)) {
-				solution = temp;
-			}
+		while (count != 6) {
+			sample1.loadPuzzle("solution" + count);
+			samplePuzzles.add(sample1);
 			count++;
 		}
-		return solution;
+		
+		
 	}
+	
+	//Will return a random puzzle from list of puzzles with 8 squares removed
+	public Puzzle getPuzzle() 
+	{
+		Random getNum = new Random();
+		
+		int x = getNum.nextInt(5);
+		int y = 0;
+		
+		Puzzle temp = samplePuzzles.get(x);
+		
+		int count = 8;
+		
+		while (count != 0) {
+			x = getNum.nextInt(8);
+			y = getNum.nextInt(8);
+			
+			Position p = temp.getPosition(x, y);
+			
+			if (p.getValue() == temp.DUMMY) {
+				//dont consider stuff already removed
+			} else {
+				temp.clearPosition(x, y);
+				count--;
+			}
+		}
+		
+		temp.makePositionsSet();
+		
+		return temp;
+	}
+	
 }

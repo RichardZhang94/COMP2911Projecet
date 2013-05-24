@@ -13,7 +13,7 @@ public class Puzzle {
 
 	private Position[][] sudokuGrid;
 	private final int gridSize;
-	private final int DUMMY;
+	public final int DUMMY;
 	private String puzzleIdentifier;
 	private String puzzleID;
 	
@@ -174,9 +174,31 @@ public class Puzzle {
 		puzzleID = x;
 	}
 	
+	public void changeValueAtPosition (int x, int y, int val) 
+	{
+		Position temp = sudokuGrid[x][y];
+		
+		temp.changeVal(val);
+		
+		sudokuGrid[x][y] = temp;
+	}
+	
 	public String getID() 
 	{
 		return puzzleID;
+	}
+	
+	public Position getPosition(int x, int y) 
+	{
+		return sudokuGrid[x][y];
+	}
+	
+	//Not sure how rondo will implement this
+	public Position giveHint() 
+	{
+		Position temp = null;
+		
+		return temp;
 	}
 	
 	public void savePuzzle() 
@@ -216,7 +238,7 @@ public class Puzzle {
 	{
 		String s = null;
 		
-		if (filename.contains("samplePuzzle") && filename.contains("solution")) {
+		if (puzzleIdentifier == null) {
 			s = "C:/Users/User/Desktop/sudoku/";
 		} else {
 			s = "C:/Users/User/Desktop/sudoku/userPuzzles/";
@@ -224,7 +246,7 @@ public class Puzzle {
 		
 		try
 		{
-			//System.out.println("hi");
+			System.out.println(filename);
 			Scanner sc = new Scanner(new FileReader(s + filename + ".txt")); 
 			//System.out.println("hi");
 			readPuzzle(sc);

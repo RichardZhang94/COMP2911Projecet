@@ -43,15 +43,22 @@ public class Position {
 		return canBeChanged;
 	}
 	
-	public void removeVal (int valToRemove) {
+	public void removeVal (int valToRemove) 
+	{
 		listOfPossibleVal.removeFirstOccurrence(valToRemove);
 	}
 	
-	public boolean checkContains (int checkVal) {
+	public boolean checkContains (int checkVal) 
+	{
 		boolean answer = true;
 		
 		answer = listOfPossibleVal.contains(checkVal);
 		
 		return answer;
+	}
+	
+	public void changeVal(int valToChangeTo) 
+	{
+		value = valToChangeTo;
 	}
 }
