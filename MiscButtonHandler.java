@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,9 +13,9 @@ public class MiscButtonHandler implements ActionListener{
 	{
 		this.puzzle = puzzle;
 	}
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) 
+	{
 		JFrame miscFrame = new JFrame();
-		miscFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if (event.getActionCommand() == "Save")
 		{
 			JLabel instruction = new JLabel("Please enter your desired save ID below");
@@ -26,7 +25,6 @@ public class MiscButtonHandler implements ActionListener{
 			miscFrame.add(inputField, BorderLayout.CENTER);
 			miscFrame.pack();
 			miscFrame.setVisible(true);
-			//this.puzzle.savePuzzle();
 		}
 		
 		if (event.getActionCommand() == "Check")

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -13,11 +14,11 @@ public class Gui{
 
 	private JLabel label;
 	private JButton button;
-	private Puzzle sudokuGrid;
 	private Integer inputToUse = 0;
-	public Gui (Puzzle puzzle)
+	private JFrame startScreen;
+	private JFrame sudokuGrid;
+	public void setPuzzle(Puzzle puzzle)
 	{
-		sudokuGrid = puzzle;
 		JPanel sudokuGrid = new JPanel();	//making the sudoku grid
 		sudokuGrid.setLayout(new GridLayout(9,9));
 		sudokuGrid.setPreferredSize(new Dimension(500,500));
@@ -33,6 +34,11 @@ public class Gui{
 			label = label.concat(x.toString());
 			label = label.concat(y.toString());
 			button.setName(label);
+			if (value != 0)	//unchangeable buttons will be red and cannot be clicked
+			{
+				button.setBackground(Color.RED);
+				button.setEnabled(false);
+			}
 			button.setPreferredSize(new Dimension(30, 30));
 			button.addActionListener(gridButtonHandler);
 			sudokuGrid.add(button);
@@ -81,14 +87,46 @@ public class Gui{
 		button.setPreferredSize(new Dimension(120, 70));
 		button.addActionListener(miscButtonHandler);
 		miscButtons.add(button);
-				
-		JFrame frame = new JFrame();				//creating actual window
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//exit when the 'x' button is clicked
-		frame.add(sudokuGrid, BorderLayout.NORTH);				//adding panels to the window
-		frame.add(inputPanel, BorderLayout.EAST);
-		frame.add(miscButtons, BorderLayout.WEST);
-		frame.setSize(700,700);						//packing the window to fit the frame size
-		frame.setVisible(true);						//show window
+		
+		JFrame sudokuFrame = new JFrame();				//creating the sudoku window
+		sudokuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//exit when the 'x' button is clicked
+		sudokuFrame.add(sudokuGrid, BorderLayout.NORTH);				//adding panels to the window
+		sudokuFrame.add(inputPanel, BorderLayout.EAST);
+		sudokuFrame.add(miscButtons, BorderLayout.WEST);
+		sudokuFrame.setSize(700,700);						
+		this.sudokuGrid = sudokuFrame;
+	}
+	public void showPuzzle()
+	{
+		this.sudokuGrid.setVisible(true);
+	}
+	public void hidePuzzle()
+	{
+		this.sudokuGrid.setVisible(false);
+	}
+	
+	public void createStartScreen()
+	{
+		JPanel startScreenButtons = new JPanel();	//creating the panel which contains the start screen buttons
+		startScreenButtons.setPreferredSize(new Dimension(500, 100));
+		button = new JButton("Load game");
+		button.addActionListener(new StartScreenButtonHandler(this));
+		startScreenButtons.add(button, BorderLayout.WEST);
+		button = new JButton("New game");
+		button.addActionListener(new StartScreenButtonHandler(this));
+		startScreenButtons.add(button, BorderLayout.EAST);
+		JFrame startScreen = new JFrame();
+		startScreen.add(startScreenButtons);
+		startScreen.pack();
+		this.startScreen = startScreen;
+	}
+	public void showStartScreen()
+	{
+		this.startScreen.setVisible(true);
+	}
+	public void hideStartScreen()
+	{
+		this.startScreen.setVisible(false);
 	}
 	public void setInputToUse (Integer input)
 	{
