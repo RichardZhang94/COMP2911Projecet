@@ -77,13 +77,17 @@ public class Gui{
 		inputPanel.add(inputGrid, BorderLayout.CENTER);
 		
 		JPanel miscButtons	= new JPanel();			//making miscellaneous buttons
-		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle);
+		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle, this);
 		miscButtons.setLayout(new GridBagLayout());
 		button = new JButton("Save");
 		button.setPreferredSize(new Dimension(120, 70));
 		button.addActionListener(miscButtonHandler);
 		miscButtons.add(button);
 		button = new JButton("Check");
+		button.setPreferredSize(new Dimension(120, 70));
+		button.addActionListener(miscButtonHandler);
+		miscButtons.add(button);
+		button = new JButton("Back");
 		button.setPreferredSize(new Dimension(120, 70));
 		button.addActionListener(miscButtonHandler);
 		miscButtons.add(button);

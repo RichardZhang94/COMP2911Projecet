@@ -9,9 +9,11 @@ import javax.swing.JTextField;
 
 public class MiscButtonHandler implements ActionListener{
 	private Puzzle puzzle;
-	public MiscButtonHandler(Puzzle puzzle)
+	private Gui gui;
+	public MiscButtonHandler(Puzzle puzzle, Gui gui)
 	{
 		this.puzzle = puzzle;
+		this.gui = gui;
 	}
 	public void actionPerformed(ActionEvent event) 
 	{
@@ -41,6 +43,12 @@ public class MiscButtonHandler implements ActionListener{
 			}
 			miscFrame.pack();
 			miscFrame.setVisible(true);
+		}
+		
+		if (event.getActionCommand() == "Back")
+		{
+			gui.hidePuzzle();
+			gui.showStartScreen();
 		}
 		
 	}
