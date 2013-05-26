@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +20,7 @@ public class Gui{
 	private Integer inputToUse = 0;
 	private JFrame startScreen;
 	private JFrame sudokuGrid;
+	private JLabel inputIndicator;
 	public void setPuzzle(Puzzle puzzle)
 	{
 		JPanel sudokuGrid = new JPanel();	//making the sudoku grid
@@ -92,11 +96,19 @@ public class Gui{
 		button.addActionListener(miscButtonHandler);
 		miscButtons.add(button);
 		
-		JFrame sudokuFrame = new JFrame();				//creating the sudoku window
+		JPanel inputIndicator = new JPanel();
+		JLabel title = new JLabel("Selected Input:");
+		JLabel input = new JLabel("0");
+		inputIndicator.add(title, BorderLayout.NORTH);
+		inputIndicator.add(input, BorderLayout.SOUTH);
+		this.inputIndicator = input;
+		
+		JFrame sudokuFrame = new JFrame("Sudoku - In Game");				//creating the sudoku window
 		sudokuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//exit when the 'x' button is clicked
 		sudokuFrame.add(sudokuGrid, BorderLayout.NORTH);				//adding panels to the window
 		sudokuFrame.add(inputPanel, BorderLayout.EAST);
 		sudokuFrame.add(miscButtons, BorderLayout.WEST);
+		sudokuFrame.add(inputIndicator, BorderLayout.CENTER);
 		sudokuFrame.setSize(700,700);						
 		this.sudokuGrid = sudokuFrame;
 	}
@@ -108,7 +120,6 @@ public class Gui{
 	{
 		this.sudokuGrid.setVisible(false);
 	}
-	
 	public void createStartScreen()
 	{
 		JPanel startScreenButtons = new JPanel();	//creating the panel which contains the start screen buttons
@@ -119,8 +130,11 @@ public class Gui{
 		button = new JButton("New game");
 		button.addActionListener(new StartScreenButtonHandler(this));
 		startScreenButtons.add(button, BorderLayout.EAST);
-		JFrame startScreen = new JFrame();
+		JFrame startScreen = new JFrame("Sudoku - Start Screen");
 		startScreen.add(startScreenButtons);
+		ImageIcon background = new ImageIcon("C:/sudoku/images/startscreenbackground.png");
+		JLabel backgroundImage = new JLabel(background);
+		startScreen.add(backgroundImage, BorderLayout.NORTH);
 		startScreen.pack();
 		this.startScreen = startScreen;
 	}
@@ -139,5 +153,9 @@ public class Gui{
 	public Integer getInputToUse()
 	{
 		return this.inputToUse;
+	}
+	public void setInputIndicator(String input)
+	{
+		this.inputIndicator.setText(input);
 	}
 }

@@ -14,8 +14,10 @@ public class LoadIDHandler implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		Puzzle loadedPuzzle = new Puzzle();
+		loadedPuzzle.setPuzzleName(event.getActionCommand());
 		loadedPuzzle.loadPuzzle(event.getActionCommand());
 		this.parentFrame.setVisible(false);
+		this.gui.hideStartScreen();
 		this.gui.setPuzzle(loadedPuzzle);
 		this.gui.showPuzzle();
 	}

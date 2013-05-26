@@ -13,6 +13,7 @@ public class InputHandler implements ActionListener {
 		char[] inputAsChar = event.getActionCommand().toCharArray();
 		Integer input = inputAsChar[0] - 48;
 		this.gui.setInputToUse(input);
+		this.gui.setInputIndicator(input.toString());
 		System.out.println("Input selected is " + input);
 	}
 
