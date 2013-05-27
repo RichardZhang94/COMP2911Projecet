@@ -23,31 +23,43 @@ public class Position {
 		}
 	}
 	
+	//Changes so this position can or can't be set
+	public void changeSet(boolean canSet)
+	{
+		canBeChanged = canSet;
+	}
+	
+	//Returns the x coordinate of position
 	public int getXPosition() 
 	{
 		return xPosition;
 	}
 	
+	//Returns y coordinate of position
 	public int getYPosition() 
 	{
 		return yPosition;
 	}
 	
+	//Returns value
 	public int getValue() 
 	{
 		return value;
 	}
 	
+	//Returns whether this value can be changed
 	public boolean canChange() 
 	{
 		return canBeChanged;
 	}
 	
+	//Removes a value this position can take
 	public void removeVal (int valToRemove) 
 	{
 		listOfPossibleVal.removeFirstOccurrence(valToRemove);
 	}
 	
+	//Checks if a value is possible
 	public boolean checkContains (int checkVal) 
 	{
 		boolean answer = true;
@@ -57,6 +69,7 @@ public class Position {
 		return answer;
 	}
 	
+	//Changes the value of position
 	public void changeVal(int valToChangeTo) 
 	{
 		value = valToChangeTo;

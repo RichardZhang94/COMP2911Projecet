@@ -9,6 +9,7 @@ public class PuzzleDatabase {
 		addSamplePuzzles();
 	}
 
+	//Adds the premade sample puzzles into list
 	private void addSamplePuzzles() 
 	{
 		Puzzle sample1 = new Puzzle();
@@ -24,7 +25,7 @@ public class PuzzleDatabase {
 		
 	}
 	
-	//Will return a random puzzle from list of puzzles with 8 squares removed
+	//Will return a random puzzle from list of puzzles with 55 squares removed
 	public Puzzle getPuzzle() 
 	{
 		Random getNum = new Random();
@@ -34,11 +35,11 @@ public class PuzzleDatabase {
 		
 		Puzzle temp = samplePuzzles.get(x);
 		
-		int count = 8;
+		int count = 55;
 		
 		while (count != 0) {
-			x = getNum.nextInt(8);
-			y = getNum.nextInt(8);
+			x = getNum.nextInt(9);
+			y = getNum.nextInt(9);
 			
 			Position p = temp.getPosition(x, y);
 			

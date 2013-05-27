@@ -1,367 +1,291 @@
 import java.util.ArrayList;
 
+
 public class Solver {
-	
-	private final int DUMMY = -1;
-	
+  public ArrayList<Integer> checker = new ArrayList<Integer>();
 	public boolean solved(Puzzle attempt){
-		int startSquareX = 0;
-		int startSquareY = 0;
-		int endSquareX = 0;
-		int endSquareY = 0;
-		int row = 0;
-		int column = 0;
-		int checkerCounter = 0;
-		boolean solved = true;
-		ArrayList<Integer> checker = new ArrayList<Integer>();
-		Position temp = null;
-		
-		while (row != 9 && solved == true)
-		{
-			while (column != 9 && solved == true)
-			{
-		     
-				//checker.get(checkerCounter) != null
-				while (checkerCounter != checker.size())
-				{
-					temp = attempt.getPosition(row, column);
-					
-					if (temp.getValue() == checker.get(checkerCounter) || temp.getValue() == DUMMY) 
-					{
-						solved = false;
+		  int startSquareX = 0;
+		  int startSquareY = 0;
+		  int endSquareX = 0;
+		  int endSquareY = 0;
+		  int row = 0;
+		  int column = 0;
+		  int checkerCounter = 0;
+		  int arraySize = 0;
+		  boolean solved = true;
+		  
+		  
+			while(row != 9 && solved == true){
+				while(column != 9 && solved == true){
+						while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(column,row) == checker.get(checkerCounter)||(attempt.getValueAtPosition(column,row)== 0)){
+							solved = false;
+							System.out.println(checkerCounter);
+						}
+						checkerCounter++;
 					}
-					
-					checkerCounter++;
+					checker.add(attempt.getValueAtPosition(column,row));
+					checkerCounter = 0;
+					arraySize++;
+					column ++;
 				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				column ++;
+				checker.clear();
+				arraySize = 0;
+				row++;
+				column = 0;
 			}
+			row = 0;
+			column = 0;
 			checker.clear();
-			row++;
-		}
-		
-		row = 0;
-		column = 0;
-		temp = null;
-		checker.clear();
 			  
-		while(column != 9 && solved == true)
-		{
-			while(row != 9 && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(row, column);
-					
-					if (temp.getValue() == checker.get(checkerCounter) || temp.getValue() == DUMMY) 
-					{
-						solved = false;
+			while(column != 9 && solved == true){
+				while(row != 9 && solved == true){
+			
+					while(checkerCounter != arraySize){
+						if ((attempt.getValueAtPosition(column,row) == checker.get(checkerCounter))||(attempt.getValueAtPosition(column,row) == 0)){
+							solved = false;
+						}
+						checkerCounter++;
 					}
-					checkerCounter++;
-				}
 					
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				row ++;
-			}
+					checker.add(attempt.getValueAtPosition(column,row));
+					checkerCounter = 0;
+					row ++;
+					arraySize++;
+				}
 				
+				checker.clear();
+				column  ++;
+				row = 0;
+				arraySize = 0;
+			}
 			checker.clear();
-			column  ++;
-		}
-		
-		checker.clear();
+			 arraySize = 0;
 			
-		//To check box 1
-		startSquareX = 0;
-		startSquareY = 0;
-		temp = null;
-		endSquareX = 3;
-		endSquareY = 3;
+			//To check box 1
+			startSquareX = 0;
+			startSquareY = 0;
+			endSquareX = 3;
+			endSquareY = 3;
 			
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+	
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
 					}
-					checkerCounter++;
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
 				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY++;
+				startSquareX  ++;
 			}
-			startSquareX++;
-		}
-		
-		checker.clear();
+			checker.clear();
+			 arraySize = 0;
 			
 			//To check box 2 
-		temp = null;
-		startSquareX = 3;
-		startSquareY = 0;
-		endSquareX = 6;
-		endSquareY = 3;
-		
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
+			startSquareX = 3;
+			startSquareY = 0;
+			endSquareX = 6;
+			endSquareY = 3;
+			
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+			
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
 					}
-					checkerCounter++;
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
 				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY++;
+				startSquareX  ++;
 			}
-			startSquareX++;
-		}
-		
-		checker.clear();
-		temp = null;
+			checker.clear();
+			 arraySize = 0;
+			
 			//To check box 3
-		startSquareX = 6;
-		startSquareY = 0;
-		endSquareX = 9;
-		endSquareY = 3;
-	  
-	   while(startSquareX != endSquareX && solved == true)
-	   {
-		   while(startSquareY != endSquareY && solved == true)
-		   {
-		    
-			   while(checker.get(checkerCounter) != null)
-			   {
-				   
-				   temp = attempt.getPosition(startSquareX, startSquareY);
-				   
-				   if (temp.getValue() == checker.get(checkerCounter))
-				   {
-					   solved = false;
-				   }
-				   
-				   checkerCounter++;
-			   }
-			   
-			   checker.add(temp.getValue());
-			   checkerCounter = 0;
-			   startSquareY++;
-		   }
-		   startSquareX++;
-		}
-			
-	   	checker.clear();
-	   	temp = null;
-			//To check box 4
-		startSquareX = 0;
-		startSquareY = 3;
-		endSquareX = 3;
-		endSquareY = 6;
-		 
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
-					}
-					checkerCounter++;
+			startSquareX = 6;
+			startSquareY = 0;
+			endSquareX = 9;
+			endSquareY = 3;
+		  
+		   while(startSquareX != endSquareX && solved == true){
+		     while(startSquareY != endSquareY && solved == true){
+		    	 
+			   while(checkerCounter != arraySize){
+			     if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+				   solved = false;
 				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY++;
+				checkerCounter++;
 			}
-			startSquareX++;
-		}
+		      checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+			  checkerCounter = 0;
+			  startSquareY ++;
+			  arraySize++;
+			}
+			 startSquareX  ++;
+			}
+			checker.clear();
+			 arraySize = 0;
 			
-		checker.clear();
-		temp = null;	
+			//To check box 4
+			startSquareX = 0;
+			startSquareY = 3;
+			endSquareX = 3;
+			endSquareY = 6;
+		 
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+				
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
+					}
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
+				}
+				startSquareX  ++;
+			}
+			checker.clear();
+			 arraySize = 0;
+			
 			
 			//To check box 5
-		startSquareX = 3;
-		startSquareY = 3;
-		endSquareX = 6;
-		endSquareY = 6;
-		 
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
-					}
-					checkerCounter++;
-				}
+			startSquareX = 3;
+			startSquareY = 3;
+			endSquareX = 6;
+			endSquareY = 6;
+		  
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
 				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY++;
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
+					}
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
+				}
+				startSquareX  ++;
 			}
-			startSquareX++;
-		}
+			checker.clear();
+			 arraySize = 0;
 			
-		checker.clear();
-		temp = null;
 			//To check box 6
-		startSquareX = 6;
-		startSquareY = 3;
-		endSquareX = 9;
-		endSquareY = 6;
+			startSquareX = 6;
+			startSquareY = 3;
+			endSquareX = 9;
+			endSquareY = 6;
 
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-				while(checker.get(checkerCounter) != null)
-				{
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+			 
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
 					}
-					checkerCounter++;
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
 				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY ++;
+				startSquareX  ++;
 			}
-			startSquareX  ++;
-		}
+			checker.clear();
+			 arraySize = 0;
 			
-		checker.clear();
-		temp = null;	
 			//To check box 7
-		startSquareX = 0;
-		startSquareY = 6;
-		endSquareX = 3;
-		endSquareY = 9;
+			startSquareX = 0;
+			startSquareY = 6;
+			endSquareX = 3;
+			endSquareY = 9;
 		 
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
-					}
-					checkerCounter++;
-				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY ++;
-			}
-			startSquareX  ++;
-		}
-			
-		checker.clear();
-		temp = null;
-		//To check box 8
-		startSquareX = 3;
-		startSquareY = 6;
-		endSquareX = 6;
-		endSquareY = 9;
-		  
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null){
-					
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
-					}
-					checkerCounter++;
-				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY ++;
-			}
-			startSquareX  ++;
-		}
-			
-		checker.clear();
-		temp = null;	
-			//To check box 9
-		startSquareX = 6;
-		startSquareY = 6;
-		endSquareX = 9;
-		endSquareY = 9;
-		  
-		while(startSquareX != endSquareX && solved == true)
-		{
-			while(startSquareY != endSquareY && solved == true)
-			{
-		     
-				while(checker.get(checkerCounter) != null)
-				{
-					temp = attempt.getPosition(startSquareX, startSquareY);
-					
-					if (temp.getValue() == checker.get(checkerCounter))
-					{
-						solved = false;
-					}
-					checkerCounter++;
-				}
-				
-				checker.add(temp.getValue());
-				checkerCounter = 0;
-				startSquareY ++;
-			}
-			startSquareX  ++;
-		}
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
 		
-		checker.clear();
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
+					}
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
+				}
+				startSquareX  ++;
+			}
+			checker.clear();
+			 arraySize = 0;
 			
-		return solved;
-	}
+			//To check box 8
+			startSquareX = 3;
+			startSquareY = 6;
+			endSquareX = 6;
+			endSquareY = 9;
+		  
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+			
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
+					}
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
+				}
+				startSquareX  ++;
+			}
+			checker.clear();
+			 arraySize = 0;
+			
+			//To check box 9
+			startSquareX = 6;
+			startSquareY = 6;
+			endSquareX = 9;
+			endSquareY = 9;
+		  
+			while(startSquareX != endSquareX && solved == true){
+				while(startSquareY != endSquareY && solved == true){
+			
+					while(checkerCounter != arraySize){
+						if (attempt.getValueAtPosition(startSquareX,startSquareY) == checker.get(checkerCounter)){
+							solved = false;
+						}
+						checkerCounter++;
+					}
+					checker.add(attempt.getValueAtPosition(startSquareX,startSquareY));
+					checkerCounter = 0;
+					startSquareY ++;
+					arraySize++;
+				}
+				startSquareX  ++;
+			}
+			checker.clear();
+			arraySize = 0;
+			return solved;
+		}
 }
