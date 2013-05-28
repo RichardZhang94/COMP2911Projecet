@@ -25,7 +25,7 @@ public class GridButtonHandler implements ActionListener{
 		int xCoordinate = coordinates[0] - 48;
 		int yCoordinate = coordinates[1] - 48;
 		System.out.println("setting (" + xCoordinate + ", " + yCoordinate + ") to " + this.gui.getInputToUse());
-		this.puzzle.addPosition(xCoordinate, yCoordinate, this.gui.getInputToUse());
+		this.puzzle.changeValueAtPosition(xCoordinate, yCoordinate, this.gui.getInputToUse());
 	}
 
 }

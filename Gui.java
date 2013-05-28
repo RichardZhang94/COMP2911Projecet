@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -24,6 +25,7 @@ public class Gui{
 	public void setPuzzle(Puzzle puzzle)
 	{
 		JPanel sudokuGrid = new JPanel();	//making the sudoku grid
+		sudokuGrid.setBackground(Color.yellow);
 		sudokuGrid.setLayout(new GridLayout(9,9));
 		sudokuGrid.setPreferredSize(new Dimension(500,500));
 		Integer i = 1;
@@ -38,9 +40,9 @@ public class Gui{
 			label = label.concat(x.toString());
 			label = label.concat(y.toString());
 			button.setName(label);
-			if (value != 0)	//unchangeable buttons will be red and cannot be clicked
+			if (puzzle.canBeChanged(x, y) == false)	//unchangeable buttons will be red and cannot be clicked
 			{
-				button.setBackground(Color.RED);
+				button.setBackground(Color.black);
 				button.setEnabled(false);
 			}
 			button.setPreferredSize(new Dimension(30, 30));
@@ -58,10 +60,12 @@ public class Gui{
 			}
 		}
 		JPanel inputLabel = new JPanel();
+		inputLabel.setBackground(Color.yellow);
 		label = new JLabel("Input");
 		inputLabel.setLayout(new FlowLayout());		//making the input label
 		inputLabel.add(label);
 		JPanel inputGrid = new JPanel();
+		inputGrid.setBackground(Color.yellow);
 		inputGrid.setLayout(new GridLayout(3,3));	//making the input grid
 		inputGrid.setPreferredSize(new Dimension(200,200));
 		InputHandler inputHandler = new InputHandler(this);
@@ -81,6 +85,7 @@ public class Gui{
 		inputPanel.add(inputGrid, BorderLayout.CENTER);
 		
 		JPanel miscButtons	= new JPanel();			//making miscellaneous buttons
+		miscButtons.setBackground(Color.yellow);
 		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle, this);
 		miscButtons.setLayout(new GridBagLayout());
 		button = new JButton("Save");
@@ -97,6 +102,7 @@ public class Gui{
 		miscButtons.add(button);
 		
 		JPanel inputIndicator = new JPanel();
+		inputIndicator.setBackground(Color.yellow);
 		JLabel title = new JLabel("Selected Input:");
 		JLabel input = new JLabel("0");
 		inputIndicator.add(title, BorderLayout.NORTH);
@@ -109,7 +115,7 @@ public class Gui{
 		sudokuFrame.add(inputPanel, BorderLayout.EAST);
 		sudokuFrame.add(miscButtons, BorderLayout.WEST);
 		sudokuFrame.add(inputIndicator, BorderLayout.CENTER);
-		sudokuFrame.setSize(700,700);						
+		sudokuFrame.setSize(700,700);	
 		this.sudokuGrid = sudokuFrame;
 	}
 	public void showPuzzle()
