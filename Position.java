@@ -22,7 +22,7 @@ public class Position {
 			count++;
 		}
 	}
-	
+
 	//Changes so this position can or can't be set
 	public void changeSet(boolean canSet)
 	{
@@ -73,5 +73,17 @@ public class Position {
 	public void changeVal(int valToChangeTo) 
 	{
 		value = valToChangeTo;
+	}
+	
+	//Gets the size of list of possible values
+	public int getListSize()
+	{
+		return listOfPossibleVal.size();
+	}
+	
+	//Get last value of list
+	public int getLastVal()
+	{
+		return listOfPossibleVal.getFirst();
 	}
 }
