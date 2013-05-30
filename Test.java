@@ -15,20 +15,28 @@ public class Test {
 	
 	//Tests solver
 	private void testSolver() {
-		boolean answer = true;
-		boolean temp = false;
+		PuzzleDatabase pd = new PuzzleDatabase();
+		int count = 0;
+		int timesfailed = 0;
+		Puzzle test = null;
 		
-		temp = thePuzzle.checkPuzzle();
-		
-		if (temp) {
-			System.out.println("Solver tests failed");
+		while (count != 20) {
+			
+			//pd = new PuzzleDatabase();
+			test = pd.getPuzzle();
+			test.solvePuzzle();
+			test.setPuzzleName("test" + count);
+			test.savePuzzle();
+			boolean answer = pd.comparePuzzle(test);
+			
+			//test = new Puzzle();
+			if (answer == false) {
+				timesfailed++;
+			}
+			count++;
 		}
-		
-		
-		
-		if (answer) {
-			System.out.println("Solver tests passed");
-		}
+		System.out.println("puzzle is " + test.getID());
+		System.out.println("You have failed " + timesfailed + " many times out of 20");
 	}
 
 	//Tests clear functions

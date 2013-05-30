@@ -337,6 +337,7 @@ public class Puzzle {
 		int column = 0;
 		
 		String id = sc.next();
+		//System.out.println("id is " + id);
 		puzzleID = id;
 		while (column != gridSize) 
 		{
@@ -399,6 +400,13 @@ public class Puzzle {
 		return answer;
 	}
 
+	//solves puzzle
+	public Puzzle solvePuzzle() {
+		DSolve solve = new DSolve(this);
+		
+		return this;
+	}
+	
 	//Makes the value to can't be changed
 	private void changeSetToFalse(int x, int y)
 	{

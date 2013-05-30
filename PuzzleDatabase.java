@@ -17,25 +17,49 @@ public class PuzzleDatabase {
 		int count = 1;
 		
 		while (count != 6) {
+			
 			sample1.loadPuzzle("solution" + count);
+			//System.out.println("sample1 id is " + sample1.getID());
 			samplePuzzles.add(sample1);
+			sample1 = new Puzzle();
 			count++;
 		}
 		
 		
 	}
 	
-	//Will return a random puzzle from list of puzzles with 20 squares removed
+	private Puzzle clone(Puzzle p)
+	{
+		int row = 0;
+		int column = 0;
+		Puzzle cloned = new Puzzle();
+		
+		while (column != 9) {
+			while (row != 9) {
+				Position temp = p.getPosition(row, column);
+				cloned.addPosition(row, column, temp.getValue());
+				row++;
+			}
+			row = 0;
+			column++;
+		}
+		
+		cloned.setID(p.getID());
+		return cloned;
+	}
+	//Will return a random puzzle from list of puzzles with 25 squares removed
 	public Puzzle getPuzzle() 
 	{
 		Random getNum = new Random();
 		
-		int x = getNum.nextInt(5);
+		int x = 0;
 		int y = 0;
 		
-		Puzzle temp = samplePuzzles.get(x);
+		x = getNum.nextInt(5);
 		
-		int count = 20;
+		Puzzle temp = this.clone(samplePuzzles.get(x));
+		
+		int count = 30;
 		
 		while (count != 0) {
 			x = getNum.nextInt(9);
@@ -56,4 +80,48 @@ public class PuzzleDatabase {
 		return temp;
 	}
 	
+	//Testing purposes
+	public Puzzle getSolution(String puzzleID)
+	{
+		int count = 0;
+		int puzzle = 0;
+		
+		while (count != samplePuzzles.size()) {
+			Puzzle temp = samplePuzzles.get(count);
+			
+			if (temp.getID().equals(puzzleID)) {
+				puzzle = count;
+			}
+			count++;
+		}
+		
+		return samplePuzzles.get(puzzle);
+	}
+	
+	public boolean comparePuzzle(Puzzle p1)
+	{
+		boolean answer = true;
+		Puzzle solution = new Puzzle();
+		char s = p1.getID().charAt(0);
+		int x = s - 'A' + 1;
+		
+		solution.loadPuzzle("solution" + x);
+		
+		int row = 0;
+		int column = 0;
+		
+		while (column != 9 && answer == true) {
+			while (row != 9 && answer == true) {
+				if (solution.getValueAtPosition(row, column) != p1.getValueAtPosition(row, column)) {
+					answer = false;
+				}
+				row++;
+			}
+			row = 0;
+			column++;
+		}
+		
+		
+		return answer;
+	}
 }
