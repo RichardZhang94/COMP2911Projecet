@@ -33,7 +33,7 @@ public class DSolve {
 	public boolean filled(Puzzle solving){
 	    int column = 0;
 	    int row = 0;
-		boolean filled = false;
+		boolean filled = true;
 	    
 	 
 	    	while(column!=9 && filled == true){  //Checks if we have put something in everysquare
@@ -94,7 +94,7 @@ public class DSolve {
 	    		    }
 	    			colTmp++;
 	    		}
-	    		   colTmp = 0;
+	    		   colTmp = 3;
 	    		   rowTmp++;
 	    	}
 	    }
@@ -136,7 +136,7 @@ public class DSolve {
 	    colTmp = 3;
 	    if(row < 6 && column < 6 && row > 2 && column > 2){
 	    	while(rowTmp != 6){
-	    		while(colTmp!=3){
+	    		while(colTmp!=6){
 	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
 	    		    	a.getPosition(colTmp,rowTmp).removeVal(value);
 	    		    }
@@ -151,8 +151,8 @@ public class DSolve {
 	    rowTmp = 3;
 	    colTmp = 6;
 	    if(row < 6 && column < 9 && row > 2 && column < 5){
-	    	while(rowTmp != 3){
-	    		while(colTmp!=3){
+	    	while(rowTmp != 6){
+	    		while(colTmp!=9){
 	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
 	    		    	a.getPosition(colTmp,rowTmp).removeVal(value);
 	    		    }
@@ -168,7 +168,7 @@ public class DSolve {
 	    colTmp = 0;
 	    if(row < 9 && column < 3 && row > 5){
 	    	while(rowTmp != 9){
-	    		while(colTmp!=6){
+	    		while(colTmp!=3){
 	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
 	    		    	a.getPosition(colTmp,rowTmp).removeVal(value);
 	    		    }
@@ -183,14 +183,14 @@ public class DSolve {
 	    rowTmp = 6;
 	    colTmp = 3;
 	    if(row < 9 && column < 6 && column > 2 && row > 5){
-	    	while(rowTmp != 3){
-	    		while(colTmp!=3){
+	    	while(rowTmp != 9){
+	    		while(colTmp!=6){
 	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
 	    		    	a.getPosition(colTmp,rowTmp).removeVal(value);
 	    		    }
 	    			colTmp++;
 	    		}
-	    		   colTmp = 0;
+	    		   colTmp = 3;
 	    		   rowTmp++;
 	    	}
 	    }
