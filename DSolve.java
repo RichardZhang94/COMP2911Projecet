@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class DSolve {
     private boolean failed;
     private int totalChanges = 0;
-	private DSolve(Puzzle solving){
+	 DSolve(Puzzle solving){
 	    int row = 0;
 	    int column = 0;
 	    int value =0;
@@ -463,6 +463,7 @@ public class DSolve {
 		    changed = false;
 		    onlyValue = true;
 		  }
+		  column = 0;
 		  row++;
 		}
 	}
