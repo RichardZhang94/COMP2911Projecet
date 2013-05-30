@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class DSolve {
     private boolean failed;
     private int totalChanges = 0;
-	 DSolve(Puzzle solving){
+	DSolve(Puzzle solving){
 	    int row = 0;
 	    int column = 0;
 	    int value =0;
@@ -21,7 +21,7 @@ public class DSolve {
 	    			
 	    		}
 	    		setValueSingleElement(solving);
-	    		setValueSpecialCases(solving);
+	   		setValueSpecialCases(solving);
 	    		row++;
 	    	  }  
 	    //	System.out.println("Counter " + counter);
@@ -264,7 +264,7 @@ public class DSolve {
 		
 		while(row!=9){
 		  while(column!=9){
-			if(solving.getValueAtPosition(column,row) != 0){  
+			if(solving.getValueAtPosition(column,row) == 0){  
 				
 			  while(counter != 10 && changed != true){
 				  
@@ -279,7 +279,7 @@ public class DSolve {
 						rowTmp++;
 					  }
 
-					  if(onlyValue == true){
+					  if(onlyValue == true  && changed!= false){
 						  solving.changeValueAtPosition(column, row, counter);
 						  totalChanges++;
 						  changed = true;
@@ -460,13 +460,16 @@ public class DSolve {
 			}	
 			column++;
 		    counter = 1;
+		    
 		    changed = false;
 		    onlyValue = true;
 		  }
-		  column = 0;
 		  row++;
+		  
+		  column = 0;
+		
 		}
-	}
+	} 
 }
 	
 
