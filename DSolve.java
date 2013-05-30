@@ -1,28 +1,32 @@
 public class DSolve {
-  
-	public void dSolve(Puzzle solving){
+    private boolean failed;
+	public DSolve(Puzzle solving){
 	    int row = 0;
 	    int column = 0;
 	    int value =0;
 	    boolean done= false;
-	 
+	    int counter = 0;
 	    
-	    while(done != false){
+	    while(done != true || failed != true){
 	    	    
 	     while(column!=9){  
 	    	  while(row!=9){
 	    		if(solving.getValueAtPosition(column,row) != 0 && solving.getPosition(column,row).getListSize() !=0){
 	    			value = solving.getValueAtPosition(column,row);
 	    			setImpossible(solving,column,row,value);
+	    			
 	    		}
 	    		setValueSingleElement(solving);
 	    		row++;
 	    	  }  
+	    //	System.out.println("Counter " + counter);
 	    	row = 0;
 	    	column++;
 	    }
 	     row = 0;
 	     column = 0;
+	     counter++;
+	     if(counter == 81) failed = true;
 	     done = filled(solving);
 	   }
 	    
@@ -50,19 +54,26 @@ public class DSolve {
         return filled;
 	}
 	
+	public boolean didNotSolve(){
+		return failed;
+	}
 	
-	public void setImpossible(Puzzle a,int row, int column, int value){
+	
+	
+	public void setImpossible(Puzzle a,int column, int row, int value){
 	    int rowTmp = 0;
 	    int colTmp = 0;
-	    
+//	    System.out.println("Working");
 	    while(colTmp!=9){
-	    	a.getPosition(colTmp,row).removeVal(value);
+	    	if(a.getPosition(colTmp,row).checkContains(value)){
+	    		a.getPosition(colTmp,row).removeVal(value);
+	    	}
 	    	colTmp++;
 	    }
 	    
 	    while(rowTmp!=9){
 	    	if(a.getPosition(column, rowTmp).checkContains(value)){
-	    	a.getPosition(column,rowTmp).removeVal(value);
+	    		a.getPosition(column,rowTmp).removeVal(value);
 	    	}
 	    	rowTmp++;
 	    }
@@ -73,8 +84,8 @@ public class DSolve {
 	    if(row < 3 && column < 3){
 	    	while(rowTmp != 3){
 	    		while(colTmp!=3){
-	    			if(a.getPosition(column, rowTmp).checkContains(value)){
-	    		    	a.getPosition(column,rowTmp).removeVal(value);
+	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
+	    		    	a.getPosition(colTmp,rowTmp).removeVal(value);
 	    		    }
 	    			colTmp++;
 	    		}
@@ -150,7 +161,7 @@ public class DSolve {
 	    //Square 6
 	    rowTmp = 3;
 	    colTmp = 6;
-	    if(row < 6 && column < 9 && row > 2 && column < 5){
+	    if(row < 6 && column < 9 && row > 2 && column > 5){
 	    	while(rowTmp != 6){
 	    		while(colTmp!=9){
 	    			if(a.getPosition(colTmp, rowTmp).checkContains(value)){
@@ -206,7 +217,7 @@ public class DSolve {
 	    		    }
 	    			colTmp++;
 	    		}
-	    		   colTmp = 0;
+	    		   colTmp = 6;
 	    		   rowTmp++;
 	    	}
 	    }
@@ -216,12 +227,15 @@ public class DSolve {
 		int value = 0;
 		int row = 0;
 		int column = 0;
-	
+	//	System.out.println("Changing attempt");
 		while(row != 9){
 			while(column !=9){
 				if(solving.getPosition(column, row).getListSize() == 1 && solving.getValueAtPosition(column,row) == 0){
+					System.out.println("Changing");
 					value = solving.getPosition(column, row).getLastVal();
 					solving.changeValueAtPosition(column, row, value);
+					System.out.println("C " + column + " R " + row + " V " + solving.getValueAtPosition(column, row));
+					
 				}
 				column++;
 			}
