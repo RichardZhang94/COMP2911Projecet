@@ -92,7 +92,7 @@ public class Gui{
 		inputPanel.setLayout(new BorderLayout());
 		inputPanel.add(inputLabel, BorderLayout.NORTH);
 		inputPanel.add(inputGrid, BorderLayout.CENTER);
-		
+
 		JPanel miscButtons	= new JPanel();			//making miscellaneous buttons
 		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle, this);
 		miscButtons.setLayout(new GridBagLayout());
@@ -117,7 +117,7 @@ public class Gui{
 		button.setOpaque(false);
 		button.setBorderPainted(false);
 		miscButtons.add(button);
-		
+
 		JPanel inputIndicator = new JPanel();
 		JLabel title = new JLabel("Selected Input:");
 		title.setForeground(Color.green);
@@ -126,7 +126,7 @@ public class Gui{
 		inputIndicator.add(title, BorderLayout.NORTH);
 		inputIndicator.add(input, BorderLayout.SOUTH);
 		this.inputIndicator = input;
-		
+
 		ImageIcon bg = new ImageIcon("C:/sudoku/images/puzzlebackground.png");
 		BackgroundPanel finalFrame = new BackgroundPanel(bg.getImage());
 		sudokuGrid.setOpaque(false);
