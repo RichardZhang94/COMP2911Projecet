@@ -25,7 +25,7 @@ public class PuzzleDatabase {
 		
 	}
 	
-	//Will return a random puzzle from list of puzzles with 55 squares removed
+	//Will return a random puzzle from list of puzzles with 20 squares removed
 	public Puzzle getPuzzle() 
 	{
 		Random getNum = new Random();
@@ -35,7 +35,7 @@ public class PuzzleDatabase {
 		
 		Puzzle temp = samplePuzzles.get(x);
 		
-		int count = 55;
+		int count = 20;
 		
 		while (count != 0) {
 			x = getNum.nextInt(9);

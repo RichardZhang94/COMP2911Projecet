@@ -42,7 +42,7 @@ public class Puzzle {
 	}
 	
 	//Adds a position
-	private void addPosition(int x, int y, int val)
+	public void addPosition(int x, int y, int val)
 	{
 		if (isLegal(x) && isLegal(y) && isLegalVal(val)) {
 			Position temp = sudokuGrid[x][y];
@@ -220,7 +220,7 @@ public class Puzzle {
 		
 		try 
 		{
-			File savedPuzzle = new File("C:/sudoku/userPuzzles/" + puzzleIdentifier + ".txt");
+			File savedPuzzle = new File("sudoku/userPuzzles/" + puzzleIdentifier + ".txt");
 		    FileOutputStream fo = new FileOutputStream(savedPuzzle);
 		    OutputStreamWriter osw = new OutputStreamWriter(fo);    
 		    BufferedWriter w = new BufferedWriter(osw);
@@ -256,7 +256,7 @@ public class Puzzle {
 		
 		try 
 		{
-			File savedPuzzle = new File("C:/sudoku/userPuzzles/" + puzzleIdentifier + "Position.txt");
+			File savedPuzzle = new File("sudoku/userPuzzles/" + puzzleIdentifier + "Position.txt");
 		    FileOutputStream fo = new FileOutputStream(savedPuzzle);
 		    OutputStreamWriter osw = new OutputStreamWriter(fo);    
 		    BufferedWriter w = new BufferedWriter(osw);
@@ -295,9 +295,9 @@ public class Puzzle {
 		boolean savedPositions = false;
 		
 		if (puzzleIdentifier == null) {
-			s = "C:/sudoku/";
+			s = "sudoku/";
 		} else {
-			s = "C:/sudoku/userPuzzles/";
+			s = "sudoku/userPuzzles/";
 			savedPositions = true;
 		}
 		
@@ -346,7 +346,10 @@ public class Puzzle {
 				//String stemp = sc.next();
 				int val = sc.nextInt();
 				//System.out.println("hi");
-				this.addPosition(row, column, val);
+				if (val != DUMMY) {
+					this.addPosition(row, column, val);
+				}
+				
 				row++;
 			}
 			row = 0;

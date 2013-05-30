@@ -12,19 +12,17 @@ String puzzleID</string>
     </void>
     <void property="methods">
      <void property="text">
-      <string>Puzzle()
-void addPosition(int x, int y, int val)
-void makePositionsSet()
-void clearPosition (int x, int y)
-void reset()
-int getValueAtPosition (int x, int y)
-void clearUnsetPositions()
-void changeValueAtPosition (int x, int y, int val)
-Position getPosition(int x, int y)
-void savePuzzle()
-void loadPuzzle(String filename)
-void readPuzzle(Scanner sc)
-boolean checkPuzzle()</string>
+      <string>addPosition()
+makePositionsSet()
+clearPosition ()
+reset()
+getValueAtPosition ()
+clearUnsetPositions()
+changeValueAtPosition ()
+getPosition()
+savePuzzle()
+loadPuzzle()
+checkPuzzle()</string>
      </void>
     </void>
     <void property="name">
@@ -77,19 +75,19 @@ boolean checkPuzzle()</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double1"/>
-      <double>461.0</double>
+      <double>417.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double1"/>
-      <double>599.0</double>
+      <double>578.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>461.0</double>
-     <double>599.0</double>
+     <double>417.0</double>
+     <double>578.0</double>
     </void>
    </object>
   </void>
@@ -106,11 +104,10 @@ LinkedList&lt;Integer&gt; listOfPossibleVal</string>
     </void>
     <void property="methods">
      <void property="text">
-      <string>Position (int x, int y, int val, boolean beenSet)
-boolean canChange() 
-void removeVal (int valToRemove)
-boolean checkContains (int checkVal)
-void changeVal(int valToChangeTo)</string>
+      <string>canChange() 
+removeVal (i)
+checkContains ()
+changeVal()</string>
      </void>
     </void>
     <void property="name">
@@ -124,19 +121,19 @@ void changeVal(int valToChangeTo)</string>
      <string>x</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>774.0</double>
+      <double>692.0</double>
      </void>
     </void>
     <void class="java.awt.geom.Point2D$Double" method="getField">
      <string>y</string>
      <void method="set">
       <object idref="Point2D$Double2"/>
-      <double>260.0</double>
+      <double>249.0</double>
      </void>
     </void>
     <void method="setLocation">
-     <double>774.0</double>
-     <double>260.0</double>
+     <double>692.0</double>
+     <double>249.0</double>
     </void>
    </object>
   </void>
@@ -149,9 +146,8 @@ void changeVal(int valToChangeTo)</string>
     </void>
     <void property="methods">
      <void property="text">
-      <string>PuzzleDatabase()
-void addSamplePuzzles()
-Puzzle getPuzzle()</string>
+      <string>addSamplePuzzles()
+getPuzzle()</string>
      </void>
     </void>
     <void property="name">

@@ -86,4 +86,5 @@ public class Position {
 	{
 		return listOfPossibleVal.getFirst();
 	}
+
 }
