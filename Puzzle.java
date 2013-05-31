@@ -426,13 +426,14 @@ public class Puzzle {
 		DSolve solve = new DSolve(this);
 		Puzzle solution = null;
 		
-		if (solve.didNotSolve() == false)
+		if (solve.didNotSolve() == true)
 		{
 			solution = this;
 		}
 		else
 		{
-			solution = null;
+			solution = new Puzzle();
+			solution.setID(puzzleID);
 		}
 		
 		return solution;
