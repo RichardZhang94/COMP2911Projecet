@@ -62,7 +62,7 @@ public class PuzzleDatabase {
 		
 		Puzzle temp = this.clone(samplePuzzles.get(x));
 		
-		int count = 30;
+		int count = 25;
 		
 		while (count != 0) {
 			x = getNum.nextInt(9);
