@@ -432,8 +432,11 @@ public class Puzzle {
 		}
 		else
 		{
+			char s = this.getID().charAt(0);
+			int x = s - 'A' + 1;
+			
 			solution = new Puzzle();
-			solution.setID(puzzleID);
+			solution.loadPuzzle("solution" + x);
 		}
 		
 		return solution;
