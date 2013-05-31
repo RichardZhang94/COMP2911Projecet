@@ -15,7 +15,6 @@ public class SaveIDHandler implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent event) {
 		this.puzzle.setPuzzleName(event.getActionCommand());
-		this.puzzle.setID(event.getActionCommand());
 		this.puzzle.savePuzzle();
 		JFrame frame = new JFrame();
 		frame.add(new JLabel("Puzzle saved!"));

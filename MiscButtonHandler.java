@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,12 +21,16 @@ public class MiscButtonHandler implements ActionListener{
 		JFrame miscFrame = new JFrame();
 		if (event.getActionCommand() == "Save")
 		{
-			JLabel instruction = new JLabel("Please enter your desired save ID below");
 			JTextField inputField = new JTextField();
 			inputField.addActionListener(new SaveIDHandler(puzzle, miscFrame));
-			miscFrame.add(instruction, BorderLayout.NORTH);
-			miscFrame.add(inputField, BorderLayout.CENTER);
-			miscFrame.pack();
+			inputField.setOpaque(false);
+			inputField.setBorder(null);
+			inputField.setSize(200,50);
+			BackgroundPanel savebg = new BackgroundPanel(new ImageIcon("C:/sudoku/images/savebackground.png").getImage());
+			savebg.setLayout(new BorderLayout());
+			savebg.add(inputField, BorderLayout.CENTER);
+			miscFrame.setContentPane(savebg);
+			miscFrame.setSize(400,300);
 			miscFrame.setVisible(true);
 		}
 		

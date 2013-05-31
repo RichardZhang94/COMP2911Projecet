@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -92,7 +93,7 @@ public class Gui{
 		inputPanel.setLayout(new BorderLayout());
 		inputPanel.add(inputLabel, BorderLayout.NORTH);
 		inputPanel.add(inputGrid, BorderLayout.CENTER);
-
+		
 		JPanel miscButtons	= new JPanel();			//making miscellaneous buttons
 		MiscButtonHandler miscButtonHandler = new MiscButtonHandler(puzzle, this);
 		miscButtons.setLayout(new GridBagLayout());
@@ -117,7 +118,7 @@ public class Gui{
 		button.setOpaque(false);
 		button.setBorderPainted(false);
 		miscButtons.add(button);
-
+		
 		JPanel inputIndicator = new JPanel();
 		JLabel title = new JLabel("Selected Input:");
 		title.setForeground(Color.green);
@@ -126,7 +127,7 @@ public class Gui{
 		inputIndicator.add(title, BorderLayout.NORTH);
 		inputIndicator.add(input, BorderLayout.SOUTH);
 		this.inputIndicator = input;
-
+		
 		ImageIcon bg = new ImageIcon("C:/sudoku/images/puzzlebackground.png");
 		BackgroundPanel finalFrame = new BackgroundPanel(bg.getImage());
 		sudokuGrid.setOpaque(false);
@@ -155,20 +156,27 @@ public class Gui{
 	}
 	public void createStartScreen()
 	{
-		JPanel startScreenButtons = new JPanel();	//creating the panel which contains the start screen buttons
-		startScreenButtons.setPreferredSize(new Dimension(500, 100));
-		button = new JButton("Load game");
-		button.addActionListener(new StartScreenButtonHandler(this));
-		startScreenButtons.add(button, BorderLayout.WEST);
-		button = new JButton("New game");
-		button.addActionListener(new StartScreenButtonHandler(this));
-		startScreenButtons.add(button, BorderLayout.EAST);
+		BackgroundPanel finalFrame = new BackgroundPanel(new ImageIcon("C:/sudoku/images/startscreen.png").getImage());
+		finalFrame.setPreferredSize(new Dimension(1000, 573));	
+		finalFrame.setLayout(null);	//using absolute positioning
 		JFrame startScreen = new JFrame("Sudoku - Start Screen");
-		startScreen.add(startScreenButtons);
-		ImageIcon background = new ImageIcon("C:/sudoku/images/startscreenbackground.png");
-		JLabel backgroundImage = new JLabel(background);
-		startScreen.add(backgroundImage, BorderLayout.NORTH);
-		startScreen.pack();
+		button = new JButton("Load game");
+		Dimension buttonSize = button.getPreferredSize();
+		button.setBackground(Color.white);
+		button.setOpaque(false);
+		button.setBorderPainted(false);
+		button.addActionListener(new StartScreenButtonHandler(this));
+		button.setBounds(275, 400, buttonSize.width, buttonSize.height);
+		finalFrame.add(button, BorderLayout.WEST);
+		button = new JButton("New game");
+		button.setBackground(Color.white);
+		button.setOpaque(false);
+		button.setBorderPainted(false);
+		button.addActionListener(new StartScreenButtonHandler(this));
+		button.setBounds(560, 400, buttonSize.width, buttonSize.height);
+		finalFrame.add(button, BorderLayout.EAST);
+		startScreen.add(finalFrame);
+		startScreen.setSize(1000,573);
 		this.startScreen = startScreen;
 	}
 	public void showStartScreen()

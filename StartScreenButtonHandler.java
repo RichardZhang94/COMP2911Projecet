@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -16,13 +17,15 @@ public class StartScreenButtonHandler implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "Load game")
 		{
+			BackgroundPanel loadbg = new BackgroundPanel(new ImageIcon("C:/sudoku/images/loadbackground.png").getImage());
 			JFrame loadFrame = new JFrame();
-			JLabel instruction = new JLabel("Please enter your save ID below and press enter");
 			JTextField inputField = new JTextField();
 			inputField.addActionListener(new LoadIDHandler(loadFrame, this.gui));
-			loadFrame.add(instruction, BorderLayout.NORTH);
-			loadFrame.add(inputField, BorderLayout.CENTER);
-			loadFrame.pack();
+			inputField.setOpaque(false);
+			loadbg.setLayout(new BorderLayout());
+			loadbg.add(inputField, BorderLayout.CENTER);
+			loadFrame.setContentPane(loadbg);
+			loadFrame.setSize(400,300);
 			loadFrame.setVisible(true);
 		}
 		if (event.getActionCommand() == "New game")
