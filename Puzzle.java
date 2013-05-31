@@ -44,14 +44,18 @@ public class Puzzle {
 	//Adds a position
 	public void addPosition(int x, int y, int val)
 	{
-		if (isLegal(x) && isLegal(y) && isLegalVal(val)) {
+		if (isLegal(x) && isLegal(y) && isLegalVal(val)) 
+		{
 			Position temp = sudokuGrid[x][y];
 			
-			if (temp.canChange()) {
+			if (temp.canChange()) 
+			{
 				Position p = new Position (x, y, val, true);
 				sudokuGrid[x][y] = p;
 			}
-		} else {
+		} 
+		else 
+		{
 			System.out.println("Invalid coordinates or value");
 		}
 		
@@ -69,7 +73,8 @@ public class Puzzle {
 			while (row != gridSize) 
 			{
 				Position temp = sudokuGrid[row][column];
-				if (temp.getValue() != DUMMY) {
+				if (temp.getValue() != DUMMY) 
+				{
 					changeSetToFalse(row, column);
 					//Position setPosition = new Position(row, column, temp.getValue(), false);
 					//sudokuGrid[row][column] = setPosition;
@@ -95,7 +100,8 @@ public class Puzzle {
 				Position dummy = new Position (x, y, DUMMY, true);
 				sudokuGrid[x][y] = dummy;
 			}
-		} else 
+		} 
+		else 
 		{
 			System.out.println("Invalid coordinates");
 		}
@@ -131,7 +137,8 @@ public class Puzzle {
 		if (isLegal(x) && isLegal(y))
 		{
 			value = sudokuGrid[x][y].getValue();
-		} else 
+		} 
+		else 
 		{
 			System.out.println("Invalid coordinates");
 		}
@@ -155,9 +162,12 @@ public class Puzzle {
 				
 				temp = sudokuGrid[row][column];
 				
-				if (!temp.canChange()) {
+				if (!temp.canChange()) 
+				{
 					//do nothing
-				} else {
+				} 
+				else 
+				{
 					Position dummy = new Position (row, column, DUMMY, true);
 					sudokuGrid[row][column] = dummy;
 				}
@@ -186,7 +196,8 @@ public class Puzzle {
 	{
 		Position temp = sudokuGrid[x][y];
 		
-		if (isLegal(x) && isLegal(y) && isLegalVal(val) && temp.canChange()) {
+		if (isLegal(x) && isLegal(y) && isLegalVal(val) && temp.canChange()) 
+		{
 			temp.changeVal(val);
 			
 			sudokuGrid[x][y] = temp;
@@ -217,7 +228,6 @@ public class Puzzle {
 	//Saves the puzzle
 	public void savePuzzle() 
 	{
-		
 		try 
 		{
 			File savedPuzzle = new File("sudoku/userPuzzles/" + puzzleIdentifier + ".txt");
@@ -243,7 +253,9 @@ public class Puzzle {
 		    	column++;
 		    }
 		    w.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 		    System.out.println("Problem has occured");
 		}
 		
@@ -272,7 +284,8 @@ public class Puzzle {
 		    	{
 		    		boolean canSet = canBeChanged(row, column);
 		    		int val = 0;
-		    		if (canSet) {
+		    		if (canSet) 
+		    		{
 		    			val = 1;
 		    		}
 		    		w.write(val + " ");
@@ -294,9 +307,12 @@ public class Puzzle {
 		String s = null;
 		boolean savedPositions = false;
 		
-		if (puzzleIdentifier == null) {
+		if (puzzleIdentifier == null) 
+		{
 			s = "sudoku/";
-		} else {
+		} 
+		else 
+		{
 			s = "sudoku/userPuzzles/";
 			savedPositions = true;
 		}
@@ -310,7 +326,8 @@ public class Puzzle {
 			
 			sc.close();
 			
-			if (savedPositions) {
+			if (savedPositions) 
+			{
 				sc = new Scanner(new FileReader(s + filename + "Position.txt")); 
 				readPuzzlePosition(sc);
 				sc.close();
@@ -347,7 +364,8 @@ public class Puzzle {
 				//String stemp = sc.next();
 				int val = sc.nextInt();
 				//System.out.println("hi");
-				if (val != DUMMY) {
+				if (val != DUMMY) 
+				{
 					this.addPosition(row, column, val);
 				}
 				
@@ -377,7 +395,8 @@ public class Puzzle {
 				int val = sc.nextInt();
 				
 				//val = 0 means false
-				if (val == 0) {
+				if (val == 0) 
+				{
 					changeSetToFalse(row, column);
 				}
 
@@ -391,7 +410,8 @@ public class Puzzle {
 	}
 	
 	//Checks if puzzle is solved
-	public boolean checkPuzzle() {
+	public boolean checkPuzzle() 
+	{
 		Solver check = new Solver();
 		boolean answer = false;
 		
@@ -401,16 +421,28 @@ public class Puzzle {
 	}
 
 	//solves puzzle
-	public Puzzle solvePuzzle() {
+	public Puzzle solvePuzzle() 
+	{
 		DSolve solve = new DSolve(this);
+		Puzzle solution = null;
 		
-		return this;
+		if (solve.didNotSolve() == false)
+		{
+			solution = this;
+		}
+		else
+		{
+			solution = null;
+		}
+		
+		return solution;
 	}
 	
 	//Makes the value to can't be changed
 	private void changeSetToFalse(int x, int y)
 	{
-		if (isLegal(x) && isLegal(y)) {
+		if (isLegal(x) && isLegal(y)) 
+		{
 			Position temp = sudokuGrid[x][y];
 			temp.changeSet(false);
 			sudokuGrid[x][y] = temp;
@@ -423,7 +455,8 @@ public class Puzzle {
 		boolean answer = false;
 		Position temp = sudokuGrid[x][y];
 		
-		if (isLegal(x) && isLegal(y) && temp.canChange()) {
+		if (isLegal(x) && isLegal(y) && temp.canChange()) 
+		{
 			answer = true;
 		}
 		
@@ -431,10 +464,12 @@ public class Puzzle {
 	}
 	
 	//Checks if coordinate is legal
-	private boolean isLegal(int x) {
+	private boolean isLegal(int x) 
+	{
 		boolean answer = false;
 		
-		if (x < gridSize && x >= 0) {
+		if (x < gridSize && x >= 0) 
+		{
 			answer = true;
 		}
 		
@@ -442,7 +477,8 @@ public class Puzzle {
 	}
 	
 	//Checks if the value is legal
-	private boolean isLegalVal(int x) {
+	private boolean isLegalVal(int x) 
+	{
 		boolean answer = false;
 		
 		if (x > 0 && x < 10) {

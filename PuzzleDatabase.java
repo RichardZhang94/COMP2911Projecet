@@ -16,8 +16,8 @@ public class PuzzleDatabase {
 		
 		int count = 1;
 		
-		while (count != 6) {
-			
+		while (count != 6) 
+		{
 			sample1.loadPuzzle("solution" + count);
 			//System.out.println("sample1 id is " + sample1.getID());
 			samplePuzzles.add(sample1);
@@ -34,8 +34,10 @@ public class PuzzleDatabase {
 		int column = 0;
 		Puzzle cloned = new Puzzle();
 		
-		while (column != 9) {
-			while (row != 9) {
+		while (column != 9) 
+		{
+			while (row != 9) 
+			{
 				Position temp = p.getPosition(row, column);
 				cloned.addPosition(row, column, temp.getValue());
 				row++;
@@ -47,6 +49,7 @@ public class PuzzleDatabase {
 		cloned.setID(p.getID());
 		return cloned;
 	}
+	
 	//Will return a random puzzle from list of puzzles with 25 squares removed
 	public Puzzle getPuzzle() 
 	{
@@ -67,9 +70,12 @@ public class PuzzleDatabase {
 			
 			Position p = temp.getPosition(x, y);
 			
-			if (p.getValue() == temp.DUMMY) {
+			if (p.getValue() == temp.DUMMY) 
+			{
 				//dont consider stuff already removed
-			} else {
+			} 
+			else 
+			{
 				temp.clearPosition(x, y);
 				count--;
 			}
@@ -86,10 +92,12 @@ public class PuzzleDatabase {
 		int count = 0;
 		int puzzle = 0;
 		
-		while (count != samplePuzzles.size()) {
+		while (count != samplePuzzles.size()) 
+		{
 			Puzzle temp = samplePuzzles.get(count);
 			
-			if (temp.getID().equals(puzzleID)) {
+			if (temp.getID().equals(puzzleID)) 
+			{
 				puzzle = count;
 			}
 			count++;
@@ -110,9 +118,12 @@ public class PuzzleDatabase {
 		int row = 0;
 		int column = 0;
 		
-		while (column != 9 && answer == true) {
-			while (row != 9 && answer == true) {
-				if (solution.getValueAtPosition(row, column) != p1.getValueAtPosition(row, column)) {
+		while (column != 9 && answer == true) 
+		{
+			while (row != 9 && answer == true) 
+			{
+				if (solution.getValueAtPosition(row, column) != p1.getValueAtPosition(row, column)) 
+				{
 					answer = false;
 				}
 				row++;
@@ -120,8 +131,6 @@ public class PuzzleDatabase {
 			row = 0;
 			column++;
 		}
-		
-		
 		return answer;
 	}
 }

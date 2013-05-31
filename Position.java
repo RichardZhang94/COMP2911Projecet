@@ -17,7 +17,8 @@ public class Position {
 		
 		int count = 1;
 		
-		while (count != 10) {
+		while (count != 10) 
+		{
 			listOfPossibleVal.add(count);
 			count++;
 		}
