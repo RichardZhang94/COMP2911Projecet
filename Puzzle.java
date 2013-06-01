@@ -429,6 +429,7 @@ public class Puzzle {
 		if (solve.didNotSolve() == true)
 		{
 			String ld = "sudoku/userPuzzles/";
+			//puzzleIdentifier = "testingSol";
 			String filename = puzzleIdentifier;
 			
 			this.savePuzzleSetPositions();
@@ -443,9 +444,10 @@ public class Puzzle {
 				int x = s - 'A' + 1;
 				
 				solution = new Puzzle();
+				//solution.setPuzzleName(name);
 				solution.loadPuzzle("solution" + x);
 				
-				readPuzzlePosition(sc);
+				solution.readPuzzlePosition(sc);
 				sc.close();
 			} 
 			catch (FileNotFoundException e) 
