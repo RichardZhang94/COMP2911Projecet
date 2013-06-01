@@ -428,15 +428,35 @@ public class Puzzle {
 		
 		if (solve.didNotSolve() == true)
 		{
-			solution = this;
+			String ld = "sudoku/userPuzzles/";
+			String filename = puzzleIdentifier;
+			
+			this.savePuzzleSetPositions();
+			
+			Scanner sc = null;
+			
+			try 
+			{
+				sc = new Scanner(new FileReader(ld + filename + "Position.txt"));
+				
+				char s = this.getID().charAt(0);
+				int x = s - 'A' + 1;
+				
+				solution = new Puzzle();
+				solution.loadPuzzle("solution" + x);
+				
+				readPuzzlePosition(sc);
+				sc.close();
+			} 
+			catch (FileNotFoundException e) 
+			{
+				
+			} 
+			
 		}
 		else
 		{
-			char s = this.getID().charAt(0);
-			int x = s - 'A' + 1;
-			
-			solution = new Puzzle();
-			solution.loadPuzzle("solution" + x);
+			solution = this;
 		}
 		
 		return solution;
