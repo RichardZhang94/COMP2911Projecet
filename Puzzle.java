@@ -17,6 +17,7 @@ public class Puzzle {
 	private String puzzleIdentifier;
 	private String puzzleID;
 	
+	//Creates a new empty puzzle
 	public Puzzle() 
 	{
 		gridSize = 9;
@@ -215,14 +216,6 @@ public class Puzzle {
 	public Position getPosition(int x, int y) 
 	{
 		return sudokuGrid[x][y];
-	}
-	
-	//Not sure how rondo will implement this
-	public Position giveHint() 
-	{
-		Position temp = null;
-		
-		return temp;
 	}
 	
 	//Saves the puzzle

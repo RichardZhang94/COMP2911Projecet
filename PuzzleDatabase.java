@@ -28,6 +28,7 @@ public class PuzzleDatabase {
 		
 	}
 	
+	//Clones a puzzle
 	private Puzzle clone(Puzzle p)
 	{
 		int row = 0;
