@@ -6,7 +6,8 @@ public class DSolve {
 	    int row = 0;
 	    int column = 0;
 	    int value =0;
-	    boolean done= false;
+	    boolean done = false;
+	    boolean failed = false;
 	    int counter = 0;
 	   
 	    
