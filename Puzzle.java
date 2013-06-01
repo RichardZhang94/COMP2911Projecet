@@ -43,6 +43,11 @@ public class Puzzle {
 	}
 	
 	//Adds a position
+	/**
+	 * @param x is the x coordinate of the position to be added
+	 * @param y is the x coordinate of the position to be added
+	 * @param val is the val of the position to be added
+	 */
 	public void addPosition(int x, int y, int val)
 	{
 		if (isLegal(x) && isLegal(y) && isLegalVal(val)) 
@@ -89,6 +94,10 @@ public class Puzzle {
 	}
 	
 	//Clears a position
+	/**
+	 * @param x is the x coordinate of the position to be cleared
+	 * @param y is the x coordinate of the position to be cleared
+	 */
 	public void clearPosition (int x, int y) 
 	{
 		if (isLegal(x) && isLegal(y)) 
@@ -131,6 +140,11 @@ public class Puzzle {
 	}
 	
 	//Gives the value at a position
+	/**
+	 * @param x is the x coordinate of the position
+	 * @param y is the y coordinate of the position
+	 * @return the value at that position
+	 */
 	public int getValueAtPosition (int x, int y) 
 	{
 		int value = 0;
@@ -181,18 +195,29 @@ public class Puzzle {
 	}
 	
 	//Sets the puzzle name
+	/**
+	 * @param name is the name of the puzzle
+	 */
 	public void setPuzzleName(String name) 
 	{
 		puzzleIdentifier = name;
 	}
 	
 	//Sets the ID
+	/**
+	 * @param x is the ID you want to set the puzzle to
+	 */
 	public void setID(String x) 
 	{
 		puzzleID = x;
 	}
 	
 	//Changes the value at that position
+	/**
+	 * @param x is the x coordinate of the position
+	 * @param y is the y coordinate of the position
+	 * @param val is the value at that position
+	 */
 	public void changeValueAtPosition (int x, int y, int val) 
 	{
 		Position temp = sudokuGrid[x][y];
@@ -207,12 +232,20 @@ public class Puzzle {
 	}
 	
 	//Returns ID
+	/**
+	 * @return the ID of the puzzle
+	 */
 	public String getID() 
 	{
 		return puzzleID;
 	}
 	
 	//Returns the position
+	/**
+	 * @param x is the x coordinate of the position
+	 * @param y is the y coordinate of the position
+	 * @return the position at the given coordinates
+	 */
 	public Position getPosition(int x, int y) 
 	{
 		return sudokuGrid[x][y];
@@ -295,6 +328,9 @@ public class Puzzle {
 	}
 	
 	//Loads the puzzle
+	/**
+	 * @param filename is the name of the file to load
+	 */
 	public void loadPuzzle(String filename) 
 	{
 		String s = null;
@@ -341,6 +377,9 @@ public class Puzzle {
 	}
 
 	//Reads the puzzle for the values
+	/**
+	 * @param sc is the scanned file for the values stored in the grid
+	 */
 	private void readPuzzle(Scanner sc) 
 	{
 		int row = 0;
@@ -372,6 +411,9 @@ public class Puzzle {
 	}
 	
 	//Read if positions can be changed
+	/**
+	 * @param sc is the scanned file which contains whether a position is set
+	 */
 	private void readPuzzlePosition(Scanner sc) 
 	{
 		int row = 0;
@@ -403,6 +445,9 @@ public class Puzzle {
 	}
 	
 	//Checks if puzzle is solved
+	/**
+	 * @return whether the puzzle is solved
+	 */
 	public boolean checkPuzzle() 
 	{
 		Solver check = new Solver();
@@ -414,6 +459,9 @@ public class Puzzle {
 	}
 
 	//solves puzzle
+	/**
+	 * @return the solved puzzle
+	 */
 	public Puzzle solvePuzzle() 
 	{
 		DSolve solve = new DSolve(this);
@@ -458,6 +506,10 @@ public class Puzzle {
 	}
 	
 	//Makes the value to can't be changed
+	/**
+	 * @param x is the x coordinate of the position
+	 * @param y is the y coordinate of the position
+	 */
 	private void changeSetToFalse(int x, int y)
 	{
 		if (isLegal(x) && isLegal(y)) 
@@ -469,6 +521,11 @@ public class Puzzle {
 	}
 	
 	//Checks if a position can be changed or not
+	/**
+	 * @param x is the x coordinate of the position
+	 * @param y is the y coordinate of the position
+	 * @return whether position can be changed or not
+	 */
 	public boolean canBeChanged(int x, int y)
 	{
 		boolean answer = false;
@@ -483,6 +540,10 @@ public class Puzzle {
 	}
 	
 	//Checks if coordinate is legal
+	/**
+	 * @param x is the coordinate that is checked
+	 * @return whether a coordinate is legal
+	 */
 	private boolean isLegal(int x) 
 	{
 		boolean answer = false;
@@ -496,6 +557,10 @@ public class Puzzle {
 	}
 	
 	//Checks if the value is legal
+	/**
+	 * @param x is the value to be checked
+	 * @return whether the value is legal
+	 */
 	private boolean isLegalVal(int x) 
 	{
 		boolean answer = false;

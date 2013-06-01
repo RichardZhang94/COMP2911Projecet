@@ -29,6 +29,10 @@ public class PuzzleDatabase {
 	}
 	
 	//Clones a puzzle
+	/**
+	 * @param p the is puzzle to be cloned
+	 * @return the cloned puzzle
+	 */
 	private Puzzle clone(Puzzle p)
 	{
 		int row = 0;
@@ -52,6 +56,9 @@ public class PuzzleDatabase {
 	}
 	
 	//Will return a random puzzle from list of puzzles with 25 squares removed
+	/**
+	 * @return a randomized puzzle with places taken out
+	 */
 	public Puzzle getPuzzle() 
 	{
 		Random getNum = new Random();
@@ -88,6 +95,10 @@ public class PuzzleDatabase {
 	}
 	
 	//Testing purposes
+	/**
+	 * @param puzzleID is the id of the puzzle
+	 * @return the solution to the puzzle
+	 */
 	public Puzzle getSolution(String puzzleID)
 	{
 		int count = 0;
@@ -107,6 +118,11 @@ public class PuzzleDatabase {
 		return samplePuzzles.get(puzzle);
 	}
 	
+	//Mainly used for testing purposes
+	/**
+	 * @param p1 the puzzle to compare the solutions to
+	 * @return whether the puzzle matches the solution
+	 */
 	public boolean comparePuzzle(Puzzle p1)
 	{
 		boolean answer = true;
