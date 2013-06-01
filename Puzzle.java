@@ -432,7 +432,7 @@ public class Puzzle {
 			//puzzleIdentifier = "testingSol";
 			String filename = puzzleIdentifier;
 			
-			this.savePuzzleSetPositions();
+			savePuzzleSetPositions();
 			
 			Scanner sc = null;
 			
@@ -440,7 +440,7 @@ public class Puzzle {
 			{
 				sc = new Scanner(new FileReader(ld + filename + "Position.txt"));
 				
-				char s = this.getID().charAt(0);
+				char s = getID().charAt(0);
 				int x = s - 'A' + 1;
 				
 				solution = new Puzzle();
