@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Solver {
 	public ArrayList<Integer> checker = new ArrayList<Integer>();
 	
+	//This function will check if the attempted puzzle is correct, that is it follows the rules of sudoku with regards to numbers and positions
 	public boolean solved(Puzzle attempt)
 	{
 		int startSquareX = 0;
@@ -16,13 +17,14 @@ public class Solver {
 		int arraySize = 0;
 		boolean solved = true;
 		  
-		  
+		//We assume it is solved as it is more efficient to prove it is not and thus, avoid running redundant parts of the method.  
 		while(row != 9 && solved == true)
 		{
 			while (column != 9 && solved == true)
 			{
 				while(checkerCounter != arraySize)
 				{
+					//This checks along a column, adding each value to the arraylist as we check, if any value occurs twice, solved becomes false or if we have any 0s
 					if (attempt.getValueAtPosition(column,row) == checker.get(checkerCounter)
 						||(attempt.getValueAtPosition(column,row)== 0))
 					{
@@ -31,11 +33,13 @@ public class Solver {
 					}
 					checkerCounter++;
 				}
+				//Sets the variables for the next position as well as adding the current value to the array list	
 				checker.add(attempt.getValueAtPosition(column,row));
 				checkerCounter = 0;
 				arraySize++;
 				column ++;
 			}
+			//Resets the array and positions for the next row
 			checker.clear();
 			arraySize = 0;
 			row++;
@@ -53,6 +57,7 @@ public class Solver {
 			
 				while (checkerCounter != arraySize)
 				{
+					//This checks along a row, adding each value to the arraylist as we check, if any value occurs twice, solved becomes false or if we have any 0s
 					if ((attempt.getValueAtPosition(column,row) == checker.get(checkerCounter))
 						 ||(attempt.getValueAtPosition(column,row) == 0))
 					{
@@ -60,19 +65,20 @@ public class Solver {
 					}
 					checkerCounter++;
 				}
-					
+				//Sets the variables for the next position as well as adding the current value to the array list	
 				checker.add(attempt.getValueAtPosition(column,row));
 				checkerCounter = 0;
 				row ++;
 				arraySize++;
 			}
-			
+			//Resets the array and positions for the next column
 			checker.clear();
 			column  ++;
 			row = 0;
 			arraySize = 0;
 		}
-			
+		
+		//Resets the array+size and prepares to check the all the boxes to see if they comply with the rules of sudoku (1 occurrence of each value in each 3x3 square)
 		checker.clear();
 		arraySize = 0;
 			
@@ -335,6 +341,7 @@ public class Solver {
 			
 		checker.clear();
 		arraySize = 0;
+		//The only way to return true is if we never went into any of the if loops, meaning we do not have any double occurrences or 0s.
 		return solved;
 	}
 }
