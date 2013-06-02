@@ -9,6 +9,9 @@ import javax.swing.JTextField;
 
 
 public class StartScreenButtonHandler implements ActionListener {
+	/**
+	 * gui displaying the frame which contains this listener
+	 */
 	private Gui gui;
 	public StartScreenButtonHandler(Gui gui)
 	{
@@ -17,8 +20,9 @@ public class StartScreenButtonHandler implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getActionCommand() == "Load game")
 		{
-			BackgroundPanel loadbg = new BackgroundPanel(new ImageIcon("C:/sudoku/images/loadbackground.png").getImage());
-			JFrame loadFrame = new JFrame();
+			//creating frame to acquire save ID from the user
+			BackgroundPanel loadbg = new BackgroundPanel(new ImageIcon("sudoku/images/loadbackground.png").getImage());
+			JFrame loadFrame = new JFrame("Loading Puzzle");
 			JTextField inputField = new JTextField();
 			inputField.addActionListener(new LoadIDHandler(loadFrame, this.gui));
 			inputField.setOpaque(false);
@@ -30,6 +34,7 @@ public class StartScreenButtonHandler implements ActionListener {
 		}
 		if (event.getActionCommand() == "New game")
 		{
+			//create a random puzzle and set it as the gui's puzzle to display
 			PuzzleDatabase puzzles = new PuzzleDatabase();
 			gui.setPuzzle(puzzles.getPuzzle());
 			gui.showPuzzle();
